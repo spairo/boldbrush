@@ -5,6 +5,8 @@ import { NgModule } from '@angular/core';
 import { SharedModule } from '@app/shared';
 import { CoreModule } from '@app/core';
 
+import { HomeModule } from '@app/home';
+
 import { AppComponent } from '@app/app.component';
 import { AppRoutingModule } from '@app/app-routing.module';
 
@@ -13,8 +15,12 @@ import { AppRoutingModule } from '@app/app-routing.module';
     AppComponent
   ],
   imports: [
+    BrowserAnimationsModule,
     BrowserModule,
     CoreModule,
+
+    HomeModule,
+
     SharedModule,
     AppRoutingModule
   ],
