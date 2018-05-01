@@ -19,6 +19,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatDialogModule } from '@angular/material/dialog';
 
+import { NgxPaginationModule } from 'ngx-pagination';
 import { ModalComponent } from './modal/modal.component';
 
 @NgModule({
@@ -40,7 +41,8 @@ import { ModalComponent } from './modal/modal.component';
     MatMenuModule,
     MatIconModule,
     MatTooltipModule,
-    MatDialogModule
+    MatDialogModule,
+    NgxPaginationModule
   ],
   declarations: [ModalComponent],
   exports: [
@@ -63,7 +65,8 @@ import { ModalComponent } from './modal/modal.component';
     MatTooltipModule,
     MatDialogModule,
 
-    ModalComponent
+    ModalComponent,
+    NgxPaginationModule
   ]
 })
 export class SharedModule {}

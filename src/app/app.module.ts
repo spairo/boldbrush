@@ -4,7 +4,6 @@ import { NgModule } from '@angular/core';
 
 import { SharedModule } from '@app/shared';
 import { CoreModule } from '@app/core';
-
 import { HomeModule } from '@app/home';
 
 import { AppComponent } from '@app/app.component';
