@@ -2,7 +2,7 @@
   <div class="row">
     <div class="col-md-12">
       <mat-card>
-        <mat-card-title>My Favorites Artists</mat-card-title>
+        <mat-card-title>  <mat-icon>list</mat-icon> My Favorites Artists</mat-card-title>
         <mat-list *ngFor="let fav of myfavs">
           <mat-list-item>
             <a (click)="selected(fav.id);">{{fav.name}} ({{fav.artworks?.length}})</a>
@@ -19,7 +19,7 @@
   <div class="row" *ngIf="selected_artist">
     <div class="col-md-12">
       <mat-card>
-          <mat-card-title>{{selected_artist.name}}</mat-card-title>
+        <mat-card-title>{{selected_artist.name}}</mat-card-title>
         <mat-card-header>
           <mat-card-title>{{selected_artist.sortable_name}}</mat-card-title>
         </mat-card-header>
@@ -28,10 +28,6 @@
           <br>
           <p>{{selected_artist.biography}}</p>
         </mat-card-content>
-        <mat-card-actions>
-          <button mat-button>LIKE</button>
-          <button mat-button>SHARE</button>
-        </mat-card-actions>
       </mat-card>
     </div>
   </div>
@@ -40,7 +36,7 @@
     <div class="col-md-12">
       <div class="row">
         <mat-card class="col" *ngFor="let artwork of artworks | paginate: { itemsPerPage: 4, currentPage: p }">
-          <img mat-card-lg-image [src]="selected_artist._links.thumbnail.href" alt="{{selected_artist.name}}">
+          <img mat-card-lg-image [src]="selected_artist._links.thumbnail.href" alt="{{selected_artist.title}}">
           <mat-card-content>
             <br>
             <mat-card-subtitle>{{artwork.title}}</mat-card-subtitle>
@@ -48,7 +44,7 @@
             <mat-card-subtitle>{{artwork.dimensions.cm.text}}</mat-card-subtitle>
           </mat-card-content>
           <mat-card-actions>
-            <button mat-button >More info</button>
+            <button mat-button (click)="showOverview = !showOverview; overview(artwork.id);">More info</button>
           </mat-card-actions>
         </mat-card>
       </div>
@@ -56,5 +52,18 @@
       <pagination-controls (pageChange)="p = $event"></pagination-controls>
     </div>
   </div>
-
 </div>
+
+<new-modal [(visible)]="showOverview" [size]="'large'" *ngIf="_overview">
+  <mat-card>
+    <mat-card-title class="text-center">{{selected_artist.name}} - {{_overview.title}}</mat-card-title>
+    <img class="img-fluid text-center" style="height: 350px;" [src]="_overview._links.image.href" alt="{{selected_artist.title}}">
+    <mat-card-content>
+      <br>
+      <mat-card-subtitle>{{_overview.medium}}</mat-card-subtitle>
+      <mat-card-subtitle>{{_overview.dimensions.cm.text}}</mat-card-subtitle>
+      <mat-card-subtitle>{{_overview.dimensions.in.text}}</mat-card-subtitle>
+      <mat-card-subtitle>Image Rights: {{_overview.image_rights}}</mat-card-subtitle>
+    </mat-card-content>
+  </mat-card>
+</new-modal>
